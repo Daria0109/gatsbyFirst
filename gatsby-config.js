@@ -2,11 +2,13 @@ module.exports = {
   siteMetadata: {
     title: `Web Warrior`,
     description: `Web dev warrior`,
-    copyright: `This site is copyright 2021 Web Warrior`
+    copyright: `This site is copyright 2021 Web Warrior`,
+    contact: `web@warrior.com`
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
+    `gatsby-transformer-remark`,
     {
       resolve: `gatsby-source-filesystem`,
       options: {
