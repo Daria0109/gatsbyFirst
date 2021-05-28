@@ -1,11 +1,12 @@
-import React from "react"
-import Layout from "../components/Layout"
-import * as styles from "../styles/home.module.css"
-import { Link } from "gatsby"
-import banner from "./../static/banner.png"
+import React from "react";
+import Layout from "../components/Layout";
+import * as styles from "../styles/home.module.css";
+import { graphql, Link } from "gatsby";
+import Img from "gatsby-image"
 
 
-const HomePage = () => {
+const HomePage = ({data}) => {
+  const bannerImage = data.file.childImageSharp.fluid
   return (
     <Layout>
       <section className={styles.heading}>
@@ -15,10 +16,22 @@ const HomePage = () => {
           <p>Web Developer</p>
           <Link className={styles.btn} to={"/projects"}>Portfolio</Link>
         </div>
-        <img src={banner} alt="Banner" style={{ maxWidth: "100%" }} />
+        <Img fluid={bannerImage}/>
       </section>
     </Layout>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;
+
+export const query = graphql`
+    query ImageQuery {
+        file(relativePath: {eq: "banner.png"}) {
+            childImageSharp {
+                fluid {
+                    ...GatsbyImageSharpFluid
+                }
+            }
+        }
+    }
+`;
